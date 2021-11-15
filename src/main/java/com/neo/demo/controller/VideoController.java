@@ -47,7 +47,6 @@ public class VideoController {
                                     .disableStream(StreamType.AUDIO)
                                     .disableStream(StreamType.SUBTITLE)
                                     .disableStream(StreamType.DATA)
-                                    .setFrameCount(StreamType.VIDEO, 100L)
                                     //1 frame every 10 seconds
                                     .setFrameRate(0.1)
                                     .setDuration(1, TimeUnit.HOURS)
@@ -59,12 +58,33 @@ public class VideoController {
 
     @PostMapping(value = "/up")
     @ResponseBody
-    public ResponseEntity<Boolean> upCamera(@RequestParam("ip") String ip,
-                                            @RequestParam("port") int port,
-                                            @RequestParam("user") String user,
-                                            @RequestParam("password") String password) {
-        CameraLoginService.login(ip, port, user, password);
-        cameraControlService.ptzControlUpStart(1, 2, 2);
-        return ResponseEntity.ok(true);
+    public ResponseEntity<Boolean> upCamera() {
+        CameraLoginService.login("192.168.100.156", 80, "admin", "admin@123");
+        Boolean upCam =cameraControlService.ptzControlUpStart(0, 0, 2);
+        return ResponseEntity.ok(upCam);
+    }
+
+    @PostMapping(value = "/up-end")
+    @ResponseBody
+    public ResponseEntity<Boolean> endUpCamera() {
+        CameraLoginService.login("192.168.100.156", 80, "admin", "admin@123");
+        Boolean endUpCam =cameraControlService.ptzControlUpEnd(0);
+        return ResponseEntity.ok(endUpCam);
+    }
+
+    @PostMapping(value = "/down")
+    @ResponseBody
+    public ResponseEntity<Boolean> downCamera() {
+        CameraLoginService.login("192.168.100.156", 80, "admin", "admin@123");
+        Boolean downCam =cameraControlService.ptzControlDownStart(0, 0, 2);
+        return ResponseEntity.ok(downCam);
+    }
+
+    @PostMapping(value = "/down-end")
+    @ResponseBody
+    public ResponseEntity<Boolean> endDownCamera() {
+        CameraLoginService.login("192.168.100.156", 80, "admin", "admin@123");
+        Boolean endDownCam =cameraControlService.ptzControlDownEnd(0);
+        return ResponseEntity.ok(endDownCam);
     }
 }

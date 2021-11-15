@@ -1,6 +1,7 @@
 package com.neo.demo.service;
 
 import com.neo.demo.lib.NetSDKLib;
+import com.sun.jna.Pointer;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,6 +11,32 @@ import org.springframework.stereotype.Service;
 @Service
 public class CameraControlService {
 
+    // 设备断线通知回调
+    private static DisConnect disConnect       = new DisConnect();
+
+    // 网络连接恢复
+    private static HaveReConnect haveReConnect = new HaveReConnect();
+
+    public CameraControlService() {
+        CameraLoginService.init(disConnect, haveReConnect);
+    }
+
+    private static class DisConnect implements NetSDKLib.fDisConnect {
+        @Override
+        public void invoke(NetSDKLib.LLong lLoginID, String pchDVRIP, int nDVRPort, Pointer dwUser) {
+            System.out.printf("Device[%s] Port[%d] DisConnect!\n", pchDVRIP, nDVRPort);
+        }
+    }
+
+    // 网络连接恢复，设备重连成功回调
+    // 通过 CLIENT_SetAutoReconnect 设置该回调函数，当已断线的设备重连成功时，SDK会调用该函数
+    private static class HaveReConnect implements NetSDKLib.fHaveReConnect {
+        @Override
+        public void invoke(NetSDKLib.LLong lLoginID, String pchDVRIP, int nDVRPort, Pointer dwUser) {
+            System.out.printf("ReConnect Device[%s] Port[%d]\n", pchDVRIP, nDVRPort);
+        }
+    }
+
     /**
      * 向上
      */
@@ -18,7 +45,7 @@ public class CameraControlService {
                 NetSDKLib.NET_PTZ_ControlType.NET_PTZ_UP_CONTROL,
                 lParam1, lParam2, 0, 0);
     }
-    public static boolean ptzControlUpEnd(int nChannelID) {
+    public boolean ptzControlUpEnd(int nChannelID) {
         return CameraLoginService.netsdk.CLIENT_DHPTZControlEx(CameraLoginService.m_hLoginHandle, nChannelID,
                 NetSDKLib.NET_PTZ_ControlType.NET_PTZ_UP_CONTROL,
                 0, 0, 0, 1);
@@ -27,12 +54,12 @@ public class CameraControlService {
     /**
      * 向下
      */
-    public static boolean ptzControlDownStart(int nChannelID, int lParam1, int lParam2) {
+    public boolean ptzControlDownStart(int nChannelID, int lParam1, int lParam2) {
         return CameraLoginService.netsdk.CLIENT_DHPTZControlEx(CameraLoginService.m_hLoginHandle, nChannelID,
                 NetSDKLib.NET_PTZ_ControlType.NET_PTZ_DOWN_CONTROL,
                 lParam1, lParam2, 0, 0);
     }
-    public static boolean ptzControlDownEnd(int nChannelID) {
+    public boolean ptzControlDownEnd(int nChannelID) {
         return 	CameraLoginService.netsdk.CLIENT_DHPTZControlEx(CameraLoginService.m_hLoginHandle, nChannelID,
                 NetSDKLib.NET_PTZ_ControlType.NET_PTZ_DOWN_CONTROL,
                 0, 0, 0, 1);

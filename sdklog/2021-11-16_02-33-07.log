@@ -1,0 +1,23 @@
+Begin Time:2021-11-16T02:33:07.205
+[2021-11-16T02:33:07.205 info Netsdk:51492 8372:3412 AVNetSDKMgr.cpp:500]Load avnetsdk library dynamically
+[2021-11-16T02:33:07.207 info Netsdk:51492 8372:3412 AVNetSDKMgr.cpp:544]avnetsdk module handle: 000000001EAE0000
+
+[2021-11-16T02:33:07.207 info Netsdk:51492 8372:3412 AVNetSDKMgr.cpp:815]Load configsdk dynamically
+[2021-11-16T02:33:07.209 info Netsdk:51492 8372:3412 dhnetsdk.cpp:253]Enter CLIENT_SetAutoReconnect:[cbAutoConnect=00000000010D0050, dwUser=0000000000000000].
+[2021-11-16T02:33:07.209 info Netsdk:51492 8372:3412 dhnetsdk.cpp:255]Leave CLIENT_SetAutoReconnect.
+[2021-11-16T02:33:07.209 info Netsdk:51492 8372:3412 dhnetsdk.cpp:273]Enter CLIENT_SetConnectTime:[nWaitTime=5000, nTryTimes=1].
+[2021-11-16T02:33:07.210 info Netsdk:51492 8372:3412 dhnetsdk.cpp:286]Leave CLIENT_SetConnectTime.
+[2021-11-16T02:33:07.211 info Netsdk:51492 8372:3412 dhnetsdk.cpp:297]Enter CLIENT_SetNetworkParam:[nWaittime=0, nConnectTime=10000, nConnectTryNum=0, nSubConnectSpaceTime=0, nGetDevInfoTime=3000, nConnectBufSize=0, nGetConnInfoTime=3000, nSearchRecordTime=0, nsubDisconnetTime=0, byNetType=0, byPlaybackBufSize=0, bDetectDisconnTime=0, bKeepLifeInterval=0, nPicBufSize=0].
+[2021-11-16T02:33:07.211 info Netsdk:51492 8372:3412 dhnetsdk.cpp:312]Leave CLIENT_SetNetworkParam.
+[2021-11-16T02:33:20.780 info Netsdk:51492 8372:2792 dhnetsdk.cpp:879]Enter CLIENT_LoginWithHighLevelSecurity. pstInParam:0000000000C95AA0, pstOutParam:0000000000CDFBE0.
+[2021-11-16T02:33:20.780 info Netsdk:51492 8372:2792 dhnetsdk.cpp:895]IP:192.168.100.156, port:80, SpeCap:0, CapParam:0000000000000000.
+[2021-11-16T02:33:21.021 info Netsdk:51492 8372:2792 dhnetsdk.cpp:941]Leave CLIENT_LoginWithHighLevelSecurity. error:0, login ID:425556464.
+[2021-11-16T02:33:21.022 info Netsdk:51492 8372:2792 dhnetsdk.cpp:4655]Enter CLIENT_DHPTZControlEx. [lLoginID=425556464, nChannelID=0, dwPTZCommand=1, param1=0, param2=0, param3=0, dwStop=1.]
+[2021-11-16T02:33:21.022 error Netsdk:51492 8372:2792 RealPlay.cpp:3310]Can't find the PtzControl_Info in m_lstPTZ.device:00000000195D79F0
+[2021-11-16T02:33:21.123 info Netsdk:51492 8372:2792 dhnetsdk.cpp:4678]Leave CLIENT_DHPTZControlEx.ret:0.
+[2021-11-16T02:37:28.601 info Netsdk:51492 8372:7812 dhnetsdk.cpp:879]Enter CLIENT_LoginWithHighLevelSecurity. pstInParam:0000000000C95E20, pstOutParam:0000000000CD30A0.
+[2021-11-16T02:37:28.602 info Netsdk:51492 8372:7812 dhnetsdk.cpp:895]IP:192.168.100.156, port:80, SpeCap:0, CapParam:0000000000000000.
+[2021-11-16T02:37:28.844 info Netsdk:51492 8372:7812 dhnetsdk.cpp:941]Leave CLIENT_LoginWithHighLevelSecurity. error:0, login ID:425638512.
+[2021-11-16T02:37:28.844 info Netsdk:51492 8372:7812 dhnetsdk.cpp:4655]Enter CLIENT_DHPTZControlEx. [lLoginID=425638512, nChannelID=0, dwPTZCommand=0, param1=0, param2=0, param3=0, dwStop=1.]
+[2021-11-16T02:37:28.844 error Netsdk:51492 8372:7812 RealPlay.cpp:3310]Can't find the PtzControl_Info in m_lstPTZ.device:00000000195EBA70
+[2021-11-16T02:37:28.945 info Netsdk:51492 8372:7812 dhnetsdk.cpp:4678]Leave CLIENT_DHPTZControlEx.ret:0.

@@ -4,11 +4,11 @@ import com.neo.demo.lib.NetSDKLib;
 import com.neo.demo.lib.NetSDKLib.LLong;
 import com.neo.demo.lib.NetSDKLib.NET_IN_LOGIN_WITH_HIGHLEVEL_SECURITY;
 import com.neo.demo.lib.NetSDKLib.NET_OUT_LOGIN_WITH_HIGHLEVEL_SECURITY;
+import com.neo.demo.lib.ToolKits;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 
-@Component
 public class CameraLoginService {
 
     public static NetSDKLib netsdk 		= NetSDKLib.NETSDK_INSTANCE;
@@ -43,11 +43,11 @@ public class CameraLoginService {
         if (!path.exists()) {
             path.mkdir();
         }
-//        String logPath = path.getAbsoluteFile().getParent() + "\\sdklog\\" + ToolKits.getDate() + ".log";
+        String logPath = path.getAbsoluteFile().getParent() + "\\sdklog\\" + ToolKits.getDate() + ".log";
         setLog.nPrintStrategy = 0;
         setLog.bSetFilePath = 1;
-//        System.arraycopy(logPath.getBytes(), 0, setLog.szLogFilePath, 0, logPath.getBytes().length);
-//        System.out.println(logPath);
+        System.arraycopy(logPath.getBytes(), 0, setLog.szLogFilePath, 0, logPath.getBytes().length);
+        System.out.println(logPath);
         setLog.bSetPrintStrategy = 1;
         bLogopen = netsdk.CLIENT_LogOpen(setLog);
         if(!bLogopen ) {
