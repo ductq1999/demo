@@ -23,6 +23,22 @@
         </dependency>
 
         <dependency>
+            <groupId>com.neo.demo</groupId>
+            <artifactId>jna</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/jna.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.neo.demo</groupId>
+            <artifactId>INetSDK</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/INetSDK.jar</systemPath>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -57,7 +73,23 @@
                 </configuration>
             </plugin>
         </plugins>
-
+        <resources>
+            <resource>
+                <directory>res</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>libs</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.dll</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>
