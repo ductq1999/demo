@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class CameraControlService {
 
     // 设备断线通知回调
-    private static DisConnect disConnect       = new DisConnect();
+    private static final DisConnect disConnect       = new DisConnect();
 
     // 网络连接恢复
-    private static HaveReConnect haveReConnect = new HaveReConnect();
+    private static final HaveReConnect haveReConnect = new HaveReConnect();
 
     public CameraControlService() {
         CameraLoginService.init(disConnect, haveReConnect);

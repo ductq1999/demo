@@ -42,7 +42,7 @@ public class VideoController {
                             .addArguments("-vcodec", "copy")
                             .addArguments("-af", "asetrate=22050")
                             .addArguments("-acodec", "aac")
-                            .addArguments("-b:a", "96k" )
+                            .addArguments("-b:a", "96k")
                             .addOutput(PipeOutput.pumpTo(os)
                                     .disableStream(StreamType.AUDIO)
                                     .disableStream(StreamType.SUBTITLE)
@@ -56,35 +56,38 @@ public class VideoController {
                 });
     }
 
+    @PostMapping(value = "/login")
+    @ResponseBody
+    public ResponseEntity<Boolean> loginCamera() {
+        Boolean loginCam = CameraLoginService.login("192.168.100.156", 80, "admin", "admin@123");
+        return ResponseEntity.ok(loginCam);
+    }
+
     @PostMapping(value = "/up")
     @ResponseBody
     public ResponseEntity<Boolean> upCamera() {
-        CameraLoginService.login("192.168.100.156", 80, "admin", "admin@123");
-        Boolean upCam =cameraControlService.ptzControlUpStart(0, 0, 2);
+        Boolean upCam = cameraControlService.ptzControlUpStart(0, 0, 2);
         return ResponseEntity.ok(upCam);
     }
 
     @PostMapping(value = "/up-end")
     @ResponseBody
     public ResponseEntity<Boolean> endUpCamera() {
-        CameraLoginService.login("192.168.100.156", 80, "admin", "admin@123");
-        Boolean endUpCam =cameraControlService.ptzControlUpEnd(0);
+        Boolean endUpCam = cameraControlService.ptzControlUpEnd(0);
         return ResponseEntity.ok(endUpCam);
     }
 
     @PostMapping(value = "/down")
     @ResponseBody
     public ResponseEntity<Boolean> downCamera() {
-        CameraLoginService.login("192.168.100.156", 80, "admin", "admin@123");
-        Boolean downCam =cameraControlService.ptzControlDownStart(0, 0, 2);
+        Boolean downCam = cameraControlService.ptzControlDownStart(0, 0, 2);
         return ResponseEntity.ok(downCam);
     }
 
     @PostMapping(value = "/down-end")
     @ResponseBody
     public ResponseEntity<Boolean> endDownCamera() {
-        CameraLoginService.login("192.168.100.156", 80, "admin", "admin@123");
-        Boolean endDownCam =cameraControlService.ptzControlDownEnd(0);
+        Boolean endDownCam = cameraControlService.ptzControlDownEnd(0);
         return ResponseEntity.ok(endDownCam);
     }
 }
